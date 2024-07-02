@@ -1,35 +1,35 @@
-import httpStatus from 'http-status';
+import httpStatus from "http-status";
+import catchAsync from "../../utils/catchAsync";
+import sendResponse from "../../utils/sendResponse";
+import { UserServices } from "./user.service";
 
-import { NextFunction, Request, Response } from 'express';
-import sendResponse from '../../utils/sendResponse';
-import { UserServices } from './user.service';
+const createUser = catchAsync(async (req, res) => {
+    const result = await UserServices.createUser(req?.body);
 
-const createStudent = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const { password, student: studentData } = req.body;
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'User created successfully!',
+        data: result,
+    });
+});
 
-    // const zodParsedData = studentValidationSchema.parse(studentData);
-
-    const result = await UserServices.createStudentIntoDB(
-      password,
-      studentData,
-    );
+const loginUser = catchAsync(async (req, res) => {
+  
+    const result = await UserServices.loginUser(req.body);
+    const { accessToken } = result;
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Student is created succesfully',
-      data: result,
+      message: 'User logged in successfully!',
+      data: {
+        accessToken
+      }
     });
-  } catch (err) {
-    next(err);
-  }
-};
+  });
 
 export const UserControllers = {
-  createStudent,
-};
+    createUser,
+    loginUser
+}

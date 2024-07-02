@@ -14,7 +14,19 @@ const addProject = catchAsync(async (req, res) => {
     });
 });
 
+const getAllProjects = catchAsync(async (req, res) => {
+    const result = await ProjectServices.getAllProjects();
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Projects received successfully!',
+        data: result,
+    });
+});
+
 
 export const ProjectControllers = {
     addProject,
+    getAllProjects
 }

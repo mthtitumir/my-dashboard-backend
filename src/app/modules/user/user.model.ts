@@ -17,9 +17,6 @@ const userSchema = new Schema<TUser, UserModel>(
       type: String,
       required: [true, 'Name is required!'],
     },
-    profilePicture: {
-      type: String,
-    },
   },
   {
     timestamps: true,

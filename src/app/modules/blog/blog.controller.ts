@@ -9,11 +9,22 @@ const addBlog = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Project added successfully!',
+        message: 'Blog added successfully!',
+        data: result,
+    });
+});
+const getAllBlogs = catchAsync(async (req, res) => {
+    const result = await BlogServices.getAllBlogs();
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Blogs received successfully!',
         data: result,
     });
 });
 
 export const BlogControllers = {
     addBlog,
+    getAllBlogs
 }

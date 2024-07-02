@@ -4,6 +4,7 @@ import { BlogControllers } from './blog.controller';
 
 const router = express.Router();
 
-router.post('/', auth(), BlogControllers.addBlog );
+router.post('/', auth(), BlogControllers.addBlog);
+router.get('/', BlogControllers.getAllBlogs);
 
 export const BlogRoutes = router;

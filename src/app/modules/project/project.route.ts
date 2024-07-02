@@ -8,6 +8,10 @@ router.post(
     '/',
     auth(),
     ProjectControllers.addProject,
-  );
+);
+router.get(
+    '/',
+    ProjectControllers.getAllProjects,
+);
 
 export const ProjectRoutes = router;

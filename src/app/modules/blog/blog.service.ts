@@ -5,7 +5,12 @@ const addBlog = async (payload: TBlog) => {
     const result = await Blog.create(payload);
     return result;
 }
+const getAllBlogs = async () => {
+    const result = await Blog.find();
+    return result;
+}
 
 export const BlogServices = {
     addBlog,
+    getAllBlogs,
 }
