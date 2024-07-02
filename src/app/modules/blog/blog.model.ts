@@ -7,6 +7,14 @@ const blogSchema = new Schema<TBlog>(
       type: String,
       required: true,
     },
+    banner: {
+      type: String,
+      required: true,
+    },
+    tags: {
+      type: [String],
+      required: true,
+    },
     shortDesc: {
       type: String,
       required: true,
