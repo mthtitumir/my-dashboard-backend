@@ -12,7 +12,21 @@ const app: Application = express();
 
 //parsers
 app.use(express.json());
-app.use(cors());
+const allowedOrigins = ['http://localhost:3000', 'https://mth-titumir.vercel.app'];
+
+const corsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // application routes
 app.use('/api/v1', router);
