@@ -13,6 +13,7 @@ const addBlog = catchAsync(async (req, res) => {
         data: result,
     });
 });
+
 const getAllBlogs = catchAsync(async (req, res) => {
     const result = await BlogServices.getAllBlogs();
 
@@ -24,7 +25,19 @@ const getAllBlogs = catchAsync(async (req, res) => {
     });
 });
 
+const getSingleBlog = catchAsync(async (req, res) => {
+    const result = await BlogServices.getSingleBlog(req?.params?.id);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Blog received successfully!',
+        data: result,
+    });
+});
+
 export const BlogControllers = {
     addBlog,
-    getAllBlogs
+    getAllBlogs,
+    getSingleBlog
 }
