@@ -9,6 +9,7 @@ const createUser = async (payload: TUser) => {
     const { name, email } = await User.create(payload);
     return { name, email };
 };
+
 const loginUser = async (payload: Partial<TUser>) => {
     // checking if the user is exist
     const user = await User.isUserExists({ email: payload?.email });
