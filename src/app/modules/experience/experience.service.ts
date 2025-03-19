@@ -7,7 +7,7 @@ const addExperience = async (payload: TExperience) => {
 }
 
 const getAllExperiences = async () => {
-    const result = await Experience.find();
+    const result = await Experience.find().sort({ createdAt: -1 });
     return result;
 }
 
